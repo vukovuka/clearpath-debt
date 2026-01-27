@@ -851,22 +851,26 @@ const monthExplanation = useMemo(() => {
         return;
       }
 
-      const response = await fetch("http://localhost:5000/v1/export/pdf", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          debts: activeDebts.map((d) => ({
-            name: d.name,
-            type: d.type,
-            balance: d.balance,
-            interest_rate: d.interest_rate,
-            minimum_payment: d.minimum_payment,
-          })),
-          paycheques,
-          bills,
-          monthly_payment: exportPaymentForBackend,
-        }),
-      });
+      const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
+const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    debts: activeDebts.map((d) => ({
+      name: d.name,
+      type: d.type,
+      balance: d.balance,
+      interest_rate: d.interest_rate,
+      minimum_payment: d.minimum_payment,
+    })),
+    paycheques,
+    bills,
+    monthly_payment: exportPaymentForBackend,
+  }),
+});
+
 
       if (!response.ok) {
         let msg = "Failed to export PDF";
