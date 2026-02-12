@@ -56,16 +56,23 @@ const emptyDebt = () => ({
   id: makeId("d"),
   name: "",
   type: "credit_card",
-  balance: 0,
-  interest_rate: 0,
+  balance: "",
+  interest_rate: "",
   min_override_enabled: false,
-  min_override_amount: 0,
+  min_override_amount: "",
 });
 
 function clampNumber(v, fallback = 0) {
   const n = Number(v);
   return Number.isFinite(n) ? n : fallback;
 }
+
+function keepBlankOrNumber(v, fallback = 0) {
+  if (v === "" || v === null || v === undefined) return "";
+  const n = Number(v);
+  return Number.isFinite(n) ? n : fallback;
+}
+
 
 function round2(n) {
   return Math.round((clampNumber(n, 0) + Number.EPSILON) * 100) / 100;
@@ -1112,7 +1119,7 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
                 <input
                   type="number"
                   value={paycheques?.[0]?.amount ?? 0}
-                  onChange={(e) => setPaycheques([{ amount: clampNumber(e.target.value, 0) }])}
+                  onChange={(e) => setPaycheques([{ amount: keepBlankOrNumber(e.target.value, 0) }])}
                 />
               </div>
 
@@ -1121,7 +1128,7 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
                 <input
                   type="number"
                   value={bills?.[0]?.amount ?? 0}
-                  onChange={(e) => setBills([{ amount: clampNumber(e.target.value, 0) }])}
+                  onChange={(e) => setBills([{ amount: keepBlankOrNumber(e.target.value, 0) }])}
                 />
               </div>
 
@@ -1142,7 +1149,7 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
     <input
       type="number"
       value={monthlyPayment}
-      onChange={(e) => setMonthlyPayment(clampNumber(e.target.value, 0))}
+      onChange={(e) => setMonthlyPayment(keepBlankOrNumber(e.target.value, 0))}
     />
     <div className="hint">Simple mode uses one steady payment every month.</div>
   </div>
@@ -1181,7 +1188,7 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
         <input
           type="number"
           value={monthlyPayment}
-          onChange={(e) => setMonthlyPayment(clampNumber(e.target.value, 0))}
+          onChange={(e) => setMonthlyPayment(keepBlankOrNumber(e.target.value, 0))}
         />
       </div>
     ) : (
@@ -1383,7 +1390,7 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
                     <input
                       type="number"
                       value={d.balance}
-                      onChange={(e) => updateDebt(idx, { balance: clampNumber(e.target.value, 0) })}
+                      onChange={(e) => updateDebt(idx, { balance: keepBlankOrNumber(e.target.value, 0) })}
                     />
                   </div>
 
@@ -1393,7 +1400,7 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
                       type="number"
                       step="0.01"
                       value={d.interest_rate}
-                      onChange={(e) => updateDebt(idx, { interest_rate: clampNumber(e.target.value, 0) })}
+                      onChange={(e) => updateDebt(idx, { interest_rate: keepBlankOrNumber(e.target.value, 0) })}
                     />
                   </div>
 
@@ -1420,7 +1427,7 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
                         <input
                           type="number"
                           value={d.min_override_amount ?? 0}
-                          onChange={(e) => updateDebt(idx, { min_override_amount: clampNumber(e.target.value, 0) })}
+                          onChange={(e) => updateDebt(idx, { min_override_amount: keepBlankOrNumber(e.target.value, 0) })}
                         />
                         <div className="tiny">Use your statement minimum if you know it.</div>
                       </div>
