@@ -1119,8 +1119,28 @@ input:focus, select:focus {
   text-decoration: underline;
 }
 
+/* Smooth expand/collapse (fintech subtle) */
+.why-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: max-height 260ms ease, opacity 180ms ease, transform 180ms ease;
+}
+
+.why-body.open {
+  max-height: 220px; /* enough for 2 short paragraphs */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.why-inner {
+  margin-top: 8px;
+}
+
+
 .chevron {
-  transition: transform 0.2s ease;
+  transition: transform 220ms ease;
 }
 
 .chevron.open {

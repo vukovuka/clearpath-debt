@@ -1630,41 +1630,27 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
     <span className={`chevron ${showWhy ? "open" : ""}`}>▾</span>
   </button>
 
-  {showWhy && (
-    <div className="why-body">
-      {simulation.monthsDiff === 0 && simulation.interestDiff === 0 ? (
-        <>
-          <p>
-            In this scenario, Snowball and Avalanche produce the same result.
-          </p>
-          <p>
-            Both strategies target the same debt first, so the timeline and
-            interest naturally match.
-          </p>
-        </>
-      ) : simulation.winner === "avalanche" ? (
-        <>
-          <p>
-            Avalanche focuses on paying off the highest-interest debt first.
-          </p>
-          <p>
-            In your case, this reduces total interest paid over time, saving
-            more money even if the payoff timeline is similar.
-          </p>
-        </>
-      ) : (
-        <>
-          <p>
-            Snowball focuses on paying off the smallest balance first.
-          </p>
-          <p>
-            In your case, this reaches debt-free just as fast while helping
-            close accounts sooner and reduce mental load.
-          </p>
-        </>
-      )}
-    </div>
-  )}
+<div className={`why-body ${showWhy ? "open" : ""}`}>
+  <div className="why-inner">
+    {simulation.monthsDiff === 0 && simulation.interestDiff === 0 ? (
+      <>
+        <p>In this scenario, Snowball and Avalanche produce the same result.</p>
+        <p>Both strategies target the same debt first, so the timeline and interest naturally match.</p>
+      </>
+    ) : simulation.winner === "avalanche" ? (
+      <>
+        <p>Avalanche focuses on paying off the highest-interest debt first.</p>
+        <p>In your case, this reduces total interest paid over time, saving more money even if the payoff timeline is similar.</p>
+      </>
+    ) : (
+      <>
+        <p>Snowball focuses on paying off the smallest balance first.</p>
+        <p>In your case, this reaches debt-free just as fast while helping close accounts sooner and reduce mental load.</p>
+      </>
+    )}
+  </div>
+</div>
+
 </div>
 
 
