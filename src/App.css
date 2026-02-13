@@ -654,6 +654,24 @@ input:focus, select:focus {
   overflow: hidden;
 }
 
+/* Reality Check: make metric cards match light theme */
+.reality.card .metric {
+  background: #fff;                 /* instead of dark transparent */
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Reality Check: readable numbers */
+.reality.card .metric-value {
+  color: var(--text) !important;    /* force dark */
+  text-shadow: none !important;     /* remove washed-out shadow */
+}
+
+/* Reality Check: readable labels */
+.reality.card .metric-label {
+  color: var(--muted) !important;
+}
+
+
 /* Reality Check stat cards: make the big numbers readable */
 .reality-grid .statValue,
 .reality-grid .stat-value,
