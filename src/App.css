@@ -753,6 +753,7 @@ input:focus, select:focus {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
+  align-items: stretch;
 }
 
 .reality-metric {
@@ -1795,4 +1796,17 @@ input:focus, select:focus {
   font-size: 13px;
   color: var(--muted);
   line-height: 1.5;
+}
+
+/* Prevent layout shift in the 4 stat cards */
+.reality-grid .metric {
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reality-grid .metric-value {
+  line-height: 1.1;
+  white-space: nowrap;
 }
