@@ -131,6 +131,25 @@ body {
   box-shadow: var(--shadow-md);
 }
 
+/* Improve contrast for large numeric values on light cards */
+.stat-value,
+.kpi-value,
+.big-number,
+.card b {
+  color: #ffffff; /* keep white */
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.25),
+    0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+.stat-card {
+  background: linear-gradient(
+    180deg,
+    #f8fafc,
+    #f1f5f9
+  );
+}
+
 
 .card-title {
   font-size: 14px;
