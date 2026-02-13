@@ -1618,6 +1618,12 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
                     </div>
                   </div>
                 </div>
+                
+                {simulation.monthsDiff === 0 && simulation.interestDiff === 0 && (
+                 <div className="strategy-note">
+                  In some situations, Snowball and Avalanche produce the same result when they target the same debt.
+                  </div>
+                )}
 
                 <div className="divider" />
 

@@ -1732,3 +1732,10 @@ input:focus, select:focus {
 .right { display: none; }
 .layout { grid-template-columns: 1fr; }
 .left { width: 100%; }
+
+.strategy-note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
