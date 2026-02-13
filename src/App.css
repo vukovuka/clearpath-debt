@@ -255,6 +255,17 @@ body {
   box-shadow: var(--shadow-md);
 }
 
+/* Primary dark action (Export PDF) */
+.cta.cta-dark {
+  background: #111827;       /* near-black */
+  color: #ffffff;
+}
+
+.cta.cta-dark:hover {
+  background: #0f172a;       /* slightly darker */
+}
+
+
 .cta:hover {
   background: var(--accent-hover);
 }

@@ -1654,7 +1654,7 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
               </div>
             </div>
 
-            <button className="cta" onClick={exportPdf} disabled={loading || reality.isAtRisk}>
+            <button className="cta cta-dark" onClick={exportPdf} disabled={loading || reality.isAtRisk}>
               {reality.isAtRisk ? "Locked (Survival Mode)" : loading ? "Exporting…" : "Export PDF snapshot"}
             </button>
 
