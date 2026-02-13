@@ -654,6 +654,34 @@ input:focus, select:focus {
   overflow: hidden;
 }
 
+/* Reality Check stat cards: make the big numbers readable */
+.reality-grid .statValue,
+.reality-grid .stat-value,
+.reality-grid .value,
+.reality-grid b {
+  color: #ffffff;
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.28),
+    0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Live Results pills / KPI values */
+.monthChip b,
+.kpi-value,
+.kpiValue,
+.result-kpi .kpi-value,
+.result-kpi b {
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.18),
+    0 0 1px rgba(0, 0, 0, 0.22);
+}
+
+.reality-grid .stat-card {
+  background: linear-gradient(180deg, #f3f4f6, #eef2f7);
+}
+
+
 .reality-top {
   display: flex;
   align-items: flex-start;
