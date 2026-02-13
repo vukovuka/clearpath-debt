@@ -952,21 +952,38 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
           <span className="brand-name">ClearPath Debt</span>
         </div>
 
-        <div className="header-right">
-          {lastUpdated ? (
-            <span className="header-chip">Last updated: {formatUpdated(lastUpdated)}</span>
-          ) : (
-            <span className="header-chip">Informational use only</span>
-          )}
-        </div>
+        <div className="header-actions">
+  <button type="button" className="ghost" onClick={resetAll}>
+    Reset
+  </button>
+
+  <div className="segmented">
+    <button
+      type="button"
+      className={`seg-btn ${uiMode === "simple" ? "active" : ""}`}
+      onClick={() => setUiMode("simple")}
+    >
+      Simple
+    </button>
+    <button
+      type="button"
+      className={`seg-btn ${uiMode === "advanced" ? "active" : ""}`}
+      onClick={() => setUiMode("advanced")}
+    >
+      Advanced
+    </button>
+  </div>
+
+  {lastUpdated ? (
+    <span className="header-chip">Last updated: {formatUpdated(lastUpdated)}</span>
+  ) : (
+    <span className="header-chip">Informational use only</span>
+  )}
+</div>
       </header>
 
       <main className="container">
         <section className="left">
-          <h1 className="headline">A debt plan that matches real life.</h1>
-          <p className="subheadline">
-            ClearPath checks feasibility first. If bills and minimums aren’t covered, strategy comparison is locked.
-          </p>
 
           {/* Reality Check */}
           <div className={`reality card ${stateTone}`}>

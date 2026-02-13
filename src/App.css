@@ -37,13 +37,45 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 22px;
+  padding: 14px 18px;
   border-bottom: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   z-index: 10;
+}
+
+.header-right { display: flex; align-items: center; }
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.segmented{
+  display:flex;
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.seg-btn{
+  border:0;
+  background:transparent;
+  padding:10px 12px;
+  font-weight:700;
+  font-size:13px;
+  color: var(--muted);
+  cursor:pointer;
+}
+
+.seg-btn.active{
+  color: var(--text);
+  background: var(--accent-soft);
 }
 
 
@@ -1696,3 +1728,7 @@ input:focus, select:focus {
   font-weight: 700;
   letter-spacing: 0.01em;
 }
+
+.right { display: none; }
+.layout { grid-template-columns: 1fr; }
+.left { width: 100%; }
