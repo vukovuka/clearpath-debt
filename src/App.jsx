@@ -501,6 +501,7 @@ export default function App() {
 
   // UI state: which schedule month is expanded for allocations
   const [openAllocIdx, setOpenAllocIdx] = useState(null);
+  const [showWhy, setShowWhy] = useState(false);
 
   // Ensure every debt has an id (backward compatibility)
   useEffect(() => {
@@ -1618,7 +1619,55 @@ const response = await fetch(`${API_BASE_URL}/v1/export/pdf`, {
                     </div>
                   </div>
                 </div>
-                
+
+                <div className="why-wrap">
+  <button
+    type="button"
+    className="why-toggle"
+    onClick={() => setShowWhy(v => !v)}
+  >
+    Why this strategy?
+    <span className={`chevron ${showWhy ? "open" : ""}`}>▾</span>
+  </button>
+
+  {showWhy && (
+    <div className="why-body">
+      {simulation.monthsDiff === 0 && simulation.interestDiff === 0 ? (
+        <>
+          <p>
+            In this scenario, Snowball and Avalanche produce the same result.
+          </p>
+          <p>
+            Both strategies target the same debt first, so the timeline and
+            interest naturally match.
+          </p>
+        </>
+      ) : simulation.winner === "avalanche" ? (
+        <>
+          <p>
+            Avalanche focuses on paying off the highest-interest debt first.
+          </p>
+          <p>
+            In your case, this reduces total interest paid over time, saving
+            more money even if the payoff timeline is similar.
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            Snowball focuses on paying off the smallest balance first.
+          </p>
+          <p>
+            In your case, this reaches debt-free just as fast while helping
+            close accounts sooner and reduce mental load.
+          </p>
+        </>
+      )}
+    </div>
+  )}
+</div>
+
+
                 {simulation.monthsDiff === 0 && simulation.interestDiff === 0 && (
                  <div className="strategy-note">
                   In some situations, Snowball and Avalanche produce the same result when they target the same debt.
